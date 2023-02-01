@@ -1,5 +1,5 @@
 ---
  dotnet: '["dotnet-sdk-7.0","aspnetcore-runtime-7.0"]'
  os: centos
- version=7 
-  chait:rmp
+ version: 7
+ chait: rmp
