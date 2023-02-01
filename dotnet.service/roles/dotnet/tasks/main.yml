@@ -1,0 +1,28 @@
+---
+# tasks file for dotnet
+- name: installing deb packages
+  ansible.builtin.get_url:
+    url: "https://packages.microsoft.com/config/{{os}}/{{version}}/packages-microsoft-prod.{{chait}}"
+    dest: /tmp/
+    mode: '1777'
+  when: ansible_facts['distribution'] == "Ubuntu"
+- name: installing deb packages
+  ansible.builtin.get_url:
+    url: "rpm -Uvh https://packages.microsoft.com/config/{{os}}/{{version}}/packages-microsoft-prod.{{chait}}"
+    dest: /tmp/
+    mode: '1777' 
+  when: ansible_facts['distribution'] == "centos"          
+- name: installing deb package
+  ansible.builtin.dpkg_selections:
+    name: packages-microsoft-prod.deb
+    selection: install
+  when: ansible_facts['distribution'] == "Ubuntu"   
+- name: installing sdk
+  ansible.builtin.package:
+    name: "{{dotnet}}"
+- name: update cache
+  ansible.builtin.apt:
+    update_cache: yes
+    state: present
+  when: ansible_facts['distribution'] == "Ubuntu" 
+       

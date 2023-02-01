@@ -1,0 +1,5 @@
+---
+ dotnet: '["dotnet-sdk-6.0","aspnetcore-runtime-6.0"]'
+ os: ubuntu
+ version: 22.04
+ chait: deb
